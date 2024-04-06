@@ -1,0 +1,110 @@
+[1mdiff --git a/Dockerfile b/Dockerfile[m
+[1mdeleted file mode 100644[m
+[1mindex c1ff810..0000000[m
+[1m--- a/Dockerfile[m
+[1m+++ /dev/null[m
+[36m@@ -1,7 +0,0 @@[m
+[31m-FROM ruby:2.7[m
+[31m-[m
+[31m-RUN mkdir /var/www[m
+[31m-[m
+[31m-COPY main.rb /var/www/main.rb[m
+[31m-[m
+[31m-CMD ["ruby", "/var/www/main.rb"][m
+\ No newline at end of file[m
+[1mdiff --git a/main.rb b/main.rb[m
+[1mdeleted file mode 100644[m
+[1mindex dbd98fc..0000000[m
+[1m--- a/main.rb[m
+[1m+++ /dev/null[m
+[36m@@ -1,13 +0,0 @@[m
+[31m-require 'webrick'[m
+[31m-[m
+[31m-server = WEBrick::HTTPServer.new([m
+[31m-    DocumentRoot: './',[m
+[31m-    BindAddress:'0.0.0.0',[m
+[31m-    Port: 8000[m
+[31m-)[m
+[31m-[m
+[31m-server.mount_proc('/') do |req, res|[m
+[31m-    res.body = 'hello'[m
+[31m-end[m
+[31m-[m
+[31m-server.start[m
+\ No newline at end of file[m
+[1mdiff --git a/sample b/sample[m
+[1mdeleted file mode 100755[m
+[1mindex d2b4527..0000000[m
+Binary files a/sample and /dev/null differ
+[1mdiff --git a/sample.cpp b/sample.cpp[m
+[1mdeleted file mode 100644[m
+[1mindex 4eb3271..0000000[m
+[1m--- a/sample.cpp[m
+[1m+++ /dev/null[m
+[36m@@ -1,62 +0,0 @@[m
+[31m-#include <iostream>[m
+[31m-using namespace std;[m
+[31m-[m
+[31m-class Student{[m
+[31m-    [m
+[31m-    protected:[m
+[31m-    int num;[m
+[31m-    int year;[m
+[31m-[m
+[31m-    public:[m
+[31m-    Student();[m
+[31m-    Student(int a);[m
+[31m-    Student(const Student &obj);[m
+[31m-    ~Student();[m
+[31m-    void set_num_year(int *a, int *b){[m
+[31m-        num = *a;[m
+[31m-        year = *b;[m
+[31m-    }[m
+[31m-    void get_num_year(int *a, int *b){[m
+[31m-        *a = num;[m
+[31m-        *b = year;[m
+[31m-    }[m
+[31m-    void show(){[m
+[31m-        cout << num << "\n";[m
+[31m-        cout << year << "\n";[m
+[31m-    }[m
+[31m-};[m
+[31m-[m
+[31m-[m
+[31m-Student::Student(){[m
+[31m-    cout << "コンストラクタ発動 初期設定を行います" << "\n";[m
+[31m-    num =10;[m
+[31m-    year = 15;[m
+[31m-}[m
+[31m-Student::Student(int a){[m
+[31m-    cout << "引数付きコンストラクタ発動 初期設定を行います" << "\n";[m
+[31m-    num =10+a;[m
+[31m-    year = 15+a;[m
+[31m-}[m
+[31m-Student::~Student(){[m
+[31m-    cout << "デストラクタ発動  終了処理を行います" << "\n";[m
+[31m-}[m
+[31m-Student::Student(const Student &obj){   //継承クラスでも起動するコンストラクタ[m
+[31m-    cout << "コピーコンストラクタ発動  初期設定を行います" << "\n";[m
+[31m-    num = obj.num;              //objの示す先は初期型のStudent[m
+[31m-    year = obj.year;[m
+[31m-}[m
+[31m-[m
+[31m-int main(){[m
+[31m-    int a,b;[m
+[31m-    cout << "aの値を入力してください: ";[m
+[31m-    cin >> a;[m
+[31m-    cout << "bの値を入力してください: ";[m
+[31m-    cin >> b;[m
+[31m-    Student Yamada;[m
+[31m-    Yamada.set_num_year(&a,&b);[m
+[31m-    Student Tanaka = Yamada;[m
+[31m-    Yamada.show();[m
+[31m-    Tanaka.show();[m
+[31m-    return 0;[m
+[31m-}[m
+[31m-[m
+[1mdiff --git a/sanple b/sanple[m
+[1mdeleted file mode 100755[m
+[1mindex d2b4527..0000000[m
+Binary files a/sanple and /dev/null differ
