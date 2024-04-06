@@ -61,12 +61,6 @@ int main(){
         if{List[i].num ==}
         List[i].set_name();
     }
-
-
-
-
-
-
     return 0;
 }
 
