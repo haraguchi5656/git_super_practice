@@ -4,7 +4,7 @@ using namespace std;
 class Student{
     
     protected:
-    char name[20];
+    string name;
     int num;
     int year;
 
@@ -13,18 +13,20 @@ class Student{
     Student(int a);
     Student(const Student &obj);
     ~Student();
-    void set_name(char *a){
-        name = *a;
+    void set_name(const string a){
+        name = a;
     }
-    void set_num_year(int *a, int *b){
-        num = *a;
-        year = *b;
+    void set_num_year(int a, int b){
+        num = a;
+        year = b;
     }
-    void get_num_year(int *a, int *b){
-        *a = num;
-        *b = year;
+    void get_num_year(int &a, int &b){     
+        a = num;
+        b = year;
+
     }
     void show(){
+        cout << name << "\n";
         cout << num << "\n";
         cout << year << "\n";
     }
@@ -53,20 +55,36 @@ Student::Student(const Student &obj){   //継承クラスでも起動するコ�
 }
 
 int main(){
+    char yorn;
     Student List[50];
-    char tmp_name[20];
+    string tmp_name;
     int tmp_num;
     int tmp_year;
-    for(int i=0,i<50,i++){
-        if{List[i].num ==}
-        List[i].set_name();
+
+    for(int i=0;i<50;i++){
+
+        if(List[i].num == 0){
+            cout << "name:";
+            cin >> tmp_name;
+            cout << "num:";
+            cin >> tmp_num;
+            cout << "year:";
+            cin >> tmp_year;
+            List[i].set_name(tmp_name);
+            List[i].set_num_year(tmp_num,tmp_year);
+
+            List[i].get_num_year(tmp_num,tmp_year);
+
+
+        }
+        cout << "next？ y/n : ";
+        cin >> yorn; 
+        if(yorn =='n') break;
     }
-
-
-
-
-
-
+    for(int i=0;i<50;i++){
+        if(List[i].num != 0){
+            List[i].show();
+        }
+    }
     return 0;
 }
-
