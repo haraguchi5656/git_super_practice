@@ -1,90 +1,74 @@
 #include <iostream>
+#include <string>
+#include <limits>
+#include "NewClass.h"
 using namespace std;
 
-class Student{
-    
-    protected:
-    string name;
-    int num;
-    int year;
+int main() {
+    int i = 0;
+    int boxsize = 10;
+    char next = 'y';
+    NewClass Students[boxsize];
 
-    public:
-    Student();
-    Student(int a);
-    Student(const Student &obj);
-    ~Student();
-    void set_name(const string a){
-        name = a;
+    // 初期化: 全ての生徒の番号を0に、名前を"未定義です"に設定
+    while (i < boxsize) {
+        Students[i].num = 0;
+        Students[i].name = "未定義です";
+        i++;
     }
-    void set_num_year(int a, int b){
-        num = a;
-        year = b;
-    }
-    void get_num_year(int &a, int &b){     
-        a = num;
-        b = year;
 
-    }
-    void show(){
-        cout << name << "\n";
-        cout << num << "\n";
-        cout << year << "\n";
-    }
-};
+    if (next == 'y') {
+        i = 0;
+        while (next == 'y' && i < boxsize) {
+            cout << i + 1 << " 人目の番号を記述:" << flush;
 
+            // 番号の入力: 整数以外の入力があった場合はエラーメッセージを表示し、再入力を促す
+            while (true) {
+                if (cin >> Students[i].num) {
+                    break;
+                } else {
+                    cout << "整数を入力してください:" << flush;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+            }
 
-Student::Student(){
-    cout << "コンストラクタ発動 初期設定を行います" << "\n";
-    num = 0;
-    year = 0;
-}
-Student::Student(int a){
-    cout << "引数付きコンストラクタ発動 初期設定を行います" << "\n";
-    num = a;
-    year = a;
-}
-Student::~Student(){
-    cout << "デストラクタ発動  終了処理を行います" << "\n";
-}
-Student::Student(const Student &obj){   //継承クラスでも起動するコンストラクタ
-    cout << "コピーコンストラクタ発動  初期設定を行います" << "\n";
-    num = obj.num;              //objの示す先は初期型のStudent
-    year = obj.year;
-    cout << "num: " << num << "\n";
-    cout << "year: " << year << "\n";
-}
+            cout << "名前を記述:";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-int main(){
-    char yorn;
-    Student List[50];
-    string tmp_name;
-    int tmp_num;
-    int tmp_year;
+            // 名前の入力: 入力がない場合はエラーメッセージを表示し、再入力を促す
+            while (true) {
+                if (getline(cin, Students[i].name)) {
+                    break;
+                } else {
+                    cout << "正確に生徒名を入力してください：" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+            }
 
-    for(int i=0;i<50;i++){
+            cout << "次の生徒はいますか y/n: ";
 
-        if(List[i].num == 0){
-            cout << "name:";
-            cin >> tmp_name;
-            cout << "num:";
-            cin >> tmp_num;
-            cout << "year:";
-            cin >> tmp_year;
-            List[i].set_name(tmp_name);
-            List[i].set_num_year(tmp_num,tmp_year);
+            // 次の生徒の有無の入力: 'y'または'n'以外の入力があった場合はエラーメッセージを表示し、再入力を促す
+            do {
+                cin >> next;
+                if (cin.fail() || (next != 'y' && next != 'n')) {
+                    cout << "y または n を入力してください:" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                } else {
+                    break;
+                }
+            } while (true);
 
-            List[i].get_num_year(tmp_num,tmp_year);
-
-
-        }
-        cout << "next？ y/n : ";
-        cin >> yorn; 
-        if(yorn =='n') break;
-    }
-    for(int i=0;i<50;i++){
-        if(List[i].num != 0){
-            List[i].show();
+            i++;
         }
     }
+
+    // 入力された生徒の番号と名前を出力
+    for (i = 0; i < boxsize; i++) {
+        cout << "番号:" << Students[i].num << " " << "名前:" << Students[i].name << "\n";
+    }
+
     return 0;
 }
