@@ -13,7 +13,6 @@ using namespace std;
 template <typename T> // テンプレ関数 可変型のT
 T re_input();
 
-
 int main() {
     int i;
     int num;
