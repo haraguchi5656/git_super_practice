@@ -10,38 +10,46 @@
 #include <algorithm>   // アルゴリズム: ソート、探索、整列などの処理
 
 using namespace std;
-
-template <typename T> T re_input();
-
-
-template <class T> // テンプレクラス 可変型のT　前方宣言は効かない
-class tmpClass {
-public:
-    T teihen, takasa;
-
-    tmpClass(T x, T y) { // コンストラクタ 変数へ値の入力
-        teihen = x;
-        takasa = y;
-    }
-
-    T keisan() { // 計算処理は入出力処理と分けるのが鉄則
-        return teihen * takasa / 2;
-    }
-}; // クラスの最後は；
+template <typename T> // テンプレ関数 可変型のT
+T re_input();
 
 
 int main() {
- 
-    // int、double型を指定してテンプレクラスを呼ぶ
-    tmpClass<int> obj1(10, 20);    // 引数２つ コンストラクタで変数に値をセット
-    cout << "テンプレートクラスを用いた整数の三角面積：" << obj1.keisan() << endl; // 計算関数で計算させる
+    int i;
+    int num;
+    vector<int> array; // int型のベクター作成
 
-    tmpClass<double> obj2(5.5, 2.2);
-    cout << "テンプレートクラスを用いた小数の三角面積：" <<obj2.keisan() << endl;
+    cout << "要素数を決めてください。" << endl;
+    num = re_input<int>(); // int指定してテンプレ関数を呼ぶ
 
-    return 0;
+    for (i = 0; i < num; i++) {
+        int data;
+        cout << num << "個中" << i << "番目のvectorデータ:";
+        data = re_input<int>();
+        array.push_back(data);    //ベクトルクラスが持つ出力関数
+    }
+
+    cout << "入力したvectorデータは以下です" << endl;
+    cout << "for文を用いた出力:" << endl;
+
+    for (i = 0; i < num; i++) {
+        cout << array[i] << " : ";
+    }
+    cout << "\n";
+
+
+
+//イテレータを用いた出力
+    cout << "イテレータを用いた出力：" << endl;
+
+    vector<int>::iterator it = array.begin();//開始位置のポインタ
+    while(it != array.end()){//終端位置のポインタまで繰り返す
+        cout << *it << " / ";
+        it++;
+    }
+    cout << "\n";
+
 }
-
 
 
 
