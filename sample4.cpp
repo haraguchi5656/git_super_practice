@@ -1,12 +1,8 @@
 // Standard Template Library (STL) - 標準テンプレートライブラリ
 // コンテナ、イテレータ、アルゴリズム
 #include <iostream>    // 入出力
-#include <type_traits> // is_same(): 型が同じか判定するテンプレ関数
-#include <limits>      // numeric_limitsのため
-#include <vector>      // コンテナ: ベクトル、マップ、キュー、スタック
-#include <map>         // イテレータ: コンテナ用のポインタ
-#include <queue>
-#include <stack>
+#include <re_input.h>
+
 #include <algorithm>   // アルゴリズム: ソート、探索、整列などの処理
 
 using namespace std;
@@ -37,7 +33,7 @@ int main() {
     cout << "テンプレートクラスを用いた整数の三角面積：" << obj1.keisan() << endl; // 計算関数で計算させる
 
     tmpClass<double> obj2(5.5, 2.2);
-    cout << "テンプレートクラスを用いた小数の三角面積：" <<obj2.keisan() << endl;
+    cout << "テンプレートクラスを用いた小数の三角面積：" << obj2.keisan() << endl;
 
     return 0;
 }
