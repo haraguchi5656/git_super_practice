@@ -1,7 +1,17 @@
+# Ruby 2.7をベースにしています
 FROM ruby:2.7
 
-RUN mkdir /var/www
+# 作業ディレクトリを/var/wwwに設定しています
+WORKDIR /var/www
 
-COPY main.rb /var/www/main.rb
+# ./srcディレクトリを/var/wwwにコピーしています
+COPY ./src /var/www/
 
-CMD ["ruby", "/var/www/main.rb"]
+# bundleの設定をローカルに保存し、vendor/bundleにインストールしています
+RUN bundle config --local set path 'vendor/bundle'
+RUN bundle install
+
+# コンテナが起動した際に/bin/bashを実行します
+# 一度これで実行し、RUN に記載する内容をシミュ・決定する
+# CMD ["/bin/bash"]
+CMD ["bundle", "exec", "ruby", "app.rb"]

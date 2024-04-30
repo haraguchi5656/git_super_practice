@@ -1,0 +1,10 @@
+# frozen_string_literal: true  # ファイルの変更を禁止
+
+source "https://rubygems.org"
+
+git_source(:github){|repo_name| "https://github.com/#{repo_name}"}  
+# GitHubからのgemのソース
+
+gem "sinatra"  # Sinatra gemの追加
+
+gem "rackup", "~> 2.1"

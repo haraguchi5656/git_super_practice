@@ -1,0 +1,11 @@
+# Ruby 2.7をベースにしています
+FROM ruby:2.7
+
+# /var/wwwディレクトリを作成しています
+RUN mkdir /var/www
+
+# main.rbファイルを/var/wwwディレクトリにコピーしています
+COPY main.rb /var/www/main.rb
+
+# main.rbファイルを実行しています
+CMD ["ruby", "/var/www/main.rb"]
